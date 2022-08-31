@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timerIcon"
+        android:layout_centerInParent="true"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="#F28EC9"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_timer"
+         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startTimer"
+        android:text="Start"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/timerIcon"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/resetTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_below="@+id/timerIcon"
+        android:layout_toEndOf="@+id/startTimer"
+        android:layout_marginStart="11dp"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/startTimer"
+        android:layout_marginLeft="11dp"
+        android:visibility="invisible"
+        tools:visibility="visible"/>
+
+</RelativeLayout>
