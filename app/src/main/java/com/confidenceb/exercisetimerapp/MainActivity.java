@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +16,12 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv_timerIcon;
-    private Button startPausebtn, resetBtn;
+    private EditText setTimeEdtxt;
+    private Button startPausebtn, resetBtn, setTimeBtn;
     private  boolean isRunning;
 
     private CountDownTimer countDownTimer;
-    private static final long START_TIME_IN_MILLIS = 600000;  // equivalent to 10 minutes
+    private long START_TIME_IN_MILLIS;  // equivalent to 10 minutes
     private long timeLeft = START_TIME_IN_MILLIS;
 
 
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         tv_timerIcon = findViewById(R.id.timerIcon);
         startPausebtn = findViewById(R.id.startTimer);
         resetBtn = findViewById(R.id.resetTimer);
+        setTimeBtn = findViewById(R.id.SetTimer);
+        setTimeEdtxt = findViewById(R.id.enterMinutes);
 
 
         startPausebtn.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
         remaingTime();
 
+        setTimeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String enterMinutes = setTimeEdtxt.getText().toString();
+                if(enterMinutes.length() == 0){
+                    Toast.makeText(MainActivity.this, "Enter minutes to set timer", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                long enteredMinutesinMillis = Long.parseLong(enterMinutes)*60000;
+                if(enteredMinutesinMillis == 0){
+                    Toast.makeText(MainActivity.this, "No minutes entered", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                setTimeMinutes(enteredMinutesinMillis);
+                setTimeEdtxt.setText("");
+            }
+        });
+
       /*  long timerduration = TimeUnit.MINUTES.toMillis(1);
 
         new CountDownTimer(timerduration, 1000) {
@@ -69,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Time elapseted", Toast.LENGTH_LONG).show();
             }
         }.start();   */
+    }
+
+    private void setTimeMinutes(long milliSeconds) {
+        START_TIME_IN_MILLIS = milliSeconds;
+        resetTimer();
     }
 
     private void startTimer() {

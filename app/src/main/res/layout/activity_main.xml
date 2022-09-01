@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterMinutes"
+        android:hint="Enter minutes"
+        android:inputType="number"
+        android:maxLength="4"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/timerIcon"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/SetTimer"
+        android:text="Set"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/timerIcon"
+        android:layout_toEndOf="@+id/enterMinutes"
+        android:layout_marginStart="11dp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/enterMinutes"
+        android:layout_marginLeft="11dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
