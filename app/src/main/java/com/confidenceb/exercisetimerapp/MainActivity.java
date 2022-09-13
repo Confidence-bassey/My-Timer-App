@@ -2,8 +2,11 @@ package com.confidenceb.exercisetimerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
+        startService(new Intent(this, MyServiceClass.class));
         countDownTimer = new CountDownTimer(timeLeft, 1000) {
             @Override
             public void onTick(long l) {
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resetTimer() {
+        stopService(new Intent(this, MyServiceClass.class));
         timeLeft = START_TIME_IN_MILLIS;
         remaingTime();
         resetBtn.setVisibility(View.INVISIBLE);
@@ -134,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void pauseTimer() {
+        stopService(new Intent(this, MyServiceClass.class));
         countDownTimer.cancel();
         isRunning = false;
         startPausebtn.setText("Start Timer");
